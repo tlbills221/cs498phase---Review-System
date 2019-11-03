@@ -6,6 +6,8 @@ var cnc = require('../common/CALARCOde')
 
 /* GET login page */
 router.get('/', function (req, res, next) {
+	var usernam = cnc.Purell(req.body.username, 's')
+	cnc.AddUser(usernam)
 	res.render('base_template', {
 		title: 'Login',
 		body: mustache.render('login')
