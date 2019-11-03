@@ -3,6 +3,7 @@ var mustache = require('../common/mustache')
 var html = require('../common/html')
 var course_portfolio_lib = require('../lib/course_portfolio')
 var router = express.Router();
+var cnc = require('../common/CALARCOde')
 
 const Department = require('../models/Department')
 const TermType = require('../models/TermType')
@@ -125,21 +126,27 @@ router.route('/:id')
 	.post(html.auth_wrapper(async (req, res, next) => {
 		if (req.params.id === 'new') {
 			if (req.body.course_submit) {
+				var course = cnc.Purell(req.body.course_number, 'i')
+				var y = cnc.Purell(req.body.course_year, 'i')
+				var num = cnc.Purell(req.body.num_students, 'i')
+				var sect = cnc.Purell(req.body.course_section, 'i')
+				
 				const course_portfolio = await course_portfolio_lib.new({
 					department_id: req.body.department,
-					course_number: req.body.course_number,
+					course_number: course,
 					instructor: 1,
 					semester: req.body.semester,
-					year: req.body.course_year,
-					num_students: req.body.num_students,
+					year: y,
+					num_students: num,
 					student_learning_outcomes: Object.entries(req.body)
 						.filter(entry => entry[0].startsWith('slo_') && entry[1] === 'on')
 						.map(entry => entry[0].split('_')[1]),
-					section: req.body.course_section
+					section: sect
 				})
 
 				res.redirect(302, `/course/${course_portfolio.id}`)
 			} else {
+				var depart = cnc.Purell(req.body.department, 's')
 				await course_new_page(res, req.body.department)
 			}
 		} else {
