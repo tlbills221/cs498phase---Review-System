@@ -5,19 +5,19 @@ describe('common - CALARCOde', () => {
 
 	describe('Purell', () => {
 
-		it('does nothing to good ints', async () => {
+		it('does nothing to good ints', Purell () => {
 			const result = cnc.Purell("1", 'i')
 
 			expect(result).to.equal(1)
 		})
     
-    		it('does nothing to good strings', async () => {
+    		it('does nothing to good strings', Purell () => {
 			const result = cnc.Purell("yo", 's')
 
 			expect(result).to.equal("yo")
 		})
 
-    		it('returns NaN on bad int', async () => {
+    		it('returns NaN on bad int', Purell () => {
 			const result = cnc.Purell("yo", 'i')
 
 			expect(result).to.equal(NaN)
