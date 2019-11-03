@@ -5,44 +5,70 @@ const sinon = require('sinon')
 const sandbox = sinon.createSandbox(); 
 
 describe('htmlFile', () => { 
-     var htmlTable = document.getElementById('student_learning_outcome_rubric')
+     var htmlTable = htmlFile.getElementById('student_learning_outcome_rubric')
+     var expectedColor
+     var result
      afterEach(() => { 
          sandbox. restore() 
      })
-        
+     //exceeds
         it('returns true when exceeds is blue', async () => {
             // Arrange
-            //User.query()
-            sandbox.stub(User, "query").returns({
-                //User.query().findById()
-                findById: sandbox.stub().returns({
-                    id: 1,
-                    linkblue_username: 'egto222'
-                })
-            })
+            expectedColor = "aqua"
 
             // Act
-            const result = await user_lib.is_whitelisted('egto222')
+            if (htmlTable.rows[0].bgColor == "aqua") {
+                 result = true
+            }
+            else result = false;
+     
+            // Assert
+            expect(result).to.true
+        })
+     
+     //meets
+        it('returns true when meets is green', async () => {
+            // Arrange
+            expectedColor = "lime"
 
+            // Act
+            if (htmlTable.rows[1].bgColor == "lime") {
+                 result = true
+            }
+            else result = false;
+     
             // Assert
             expect(result).to.true
         })
         
-        it('returns false when the color is incorrect', async () => {
+     //partially
+        it('returns true when partially is yellow', async () => {
             // Arrange
-            const User = require('../../../main/models/User')
-
-            // User.query()
-            sandbox.stub(User, "query").returns({
-                    //User.query().findById()
-                    findById: sandbox.stub().returns(null) //no user obj returned
-            })
+            expectedColor = "gold"
 
             // Act
-            const result = await user_lib.is_whitelisted('egto222')
-
+            if (htmlTable.rows[2].bgColor == "gold") {
+                 result = true
+            }
+            else result = false;
+     
             // Assert
-            expect(result).to.false
+            expect(result).to.true
+        })
+
+     //Fails
+        it('returns true when fails is red', async () => {
+            // Arrange
+            expectedColor = "salmon"
+
+            // Act
+            if (htmlTable.rows[3].bgColor == "salmon") {
+                 result = true
+            }
+            else result = false;
+     
+            // Assert
+            expect(result).to.true
         })
     })
 })
