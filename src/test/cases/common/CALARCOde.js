@@ -1,5 +1,8 @@
 const cnc = require('../../../main/common/CALARCOde')
 const { expect } = require('../../chai')
+const sinon = require('sinon') 
+
+const sandbox = sinon.createSandbox(); 
 
 describe('common - CALARCOde', () => {
 
@@ -23,3 +26,20 @@ describe('common - CALARCOde', () => {
 			expect(result).to.equal(NaN)
 		})
 	})
+	
+	describe('AddUser', () => {
+		afterEach(() => { 
+            		sandbox. restore() 
+        	})
+		
+		it('adds users', async () => {
+            	// Arrange
+            	const User = require('../../../main/models/User')
+            	cnc.AddUser('egto222')
+            	// Act
+            	const result = await user_lib.is_whitelisted('egto222')
+
+            	// Assert
+            	expect(result).to.true
+        	})
+	})})
