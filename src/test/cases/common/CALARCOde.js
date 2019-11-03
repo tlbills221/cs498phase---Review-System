@@ -8,18 +8,18 @@ describe('common - CALARCOde', () => {
 		it('does nothing to good ints', async () => {
 			const result = cnc.Purell("1", 'i')
 
-			expect(slo).to.equal(1)
+			expect(result).to.equal(1)
 		})
     
-    it('does nothing to good strings', async () => {
+    		it('does nothing to good strings', async () => {
 			const result = cnc.Purell("yo", 's')
 
-			expect(slo).to.equal("yo")
+			expect(result).to.equal("yo")
 		})
 
-    it('returns NaN on bad int', async () => {
+    		it('returns NaN on bad int', async () => {
 			const result = cnc.Purell("yo", 'i')
 
-			expect(slo).to.equal(NaN)
+			expect(result).to.equal(NaN)
 		})
 	})
