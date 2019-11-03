@@ -130,12 +130,14 @@ router.route('/:id')
 				var y = cnc.Purell(req.body.course_year, 'i')
 				var num = cnc.Purell(req.body.num_students, 'i')
 				var sect = cnc.Purell(req.body.course_section, 'i')
+				var dep = cnc.Purell(req.body.department, 's')
+				var semes = cnc.Purell(req.body.course_section, 's')
 				
 				const course_portfolio = await course_portfolio_lib.new({
-					department_id: req.body.department,
+					department_id: dep,
 					course_number: course,
 					instructor: 1,
-					semester: req.body.semester,
+					semester: semes,
 					year: y,
 					num_students: num,
 					student_learning_outcomes: Object.entries(req.body)
