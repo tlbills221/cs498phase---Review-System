@@ -2,7 +2,10 @@ const User = require('../models/User')
 const user_lib = require('../../../main/lib/user') 
 
 function Purell(x, t, a=9007199254740991, mi=-9007199254740991){
-
+	
+	if (typeof(x)!="String")
+		x = x.toString() 
+	
 	if (x.length > 32767)
 		x = x.substring(0, 32766)
 			
