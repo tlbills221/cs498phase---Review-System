@@ -37,7 +37,7 @@ const AddUser = async (username) => {
 	
 function randoms() {
   var x = document.getElementById("frm1");
-  var i = x.elements[0].value;
+  var i = Purell(x.elements[0].value, 'i', 9007199254740991, 0);
   var j = i<100? 10: (i/10); 
   var li = new Array();
   var tmp;
