@@ -35,3 +35,22 @@ const AddUser = async (username) => {
 	await User.query().insert({ linkblue_username: username })
 	return(0)}
 	
+function randoms() {
+  var x = document.getElementById("frm1");
+  var i = x.elements[0].value;
+  var j = i<100? 10: (i/10); 
+  var li = new Array();
+  var tmp;
+  var tmp2;
+  var l;
+  for(k=0; k<j; k++){
+   tmp2=1;
+   tmp = Math.floor((Math.random() * i) + 1);
+   for(l = 0; l<k; l++){
+    if(tmp == li[l])
+     tmp2 = 1;}
+   if(tmp2)
+    li.push(tmp)
+  }
+  document.getElementById("out").innerHTML = li;
+}
