@@ -52,8 +52,11 @@ function randoms() {
    if(tmp2)
     li.push(tmp)
   }
-  document.getElementById("out").innerHTML = li;
+  return li;
 }
+
+function randomsh(){
+	document.getElementById("out").innerHTML = randoms()}
 
 function easy() {
 	return "<p><br><center><b><font size='7' color='red'>you are entering student learning outcome evaluations not assignment grades.<p>these reports are important to understand how well a course is preparing students and is not an evaluation of the professor.</font></b></center><br><br>";}
