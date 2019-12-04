@@ -117,7 +117,7 @@ describe('Help Hyperlinks', () => {
             expectedNum = 3
 
             // Act
-            result = dom.getElementsByTagName("a").length;
+            result = dom.window.document.getElementsByTagName('a').length;
      
             // Assert
             expect(result).to.equal(expectedNum)
