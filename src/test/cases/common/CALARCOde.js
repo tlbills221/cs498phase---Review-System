@@ -1,7 +1,7 @@
 const CALARCOde_common = require('../../../main/common/CALARCOde')
 const { expect } = require('../../chai')
 const sinon = require('sinon') 
-const User = require('../../../main/models/User')
+const user_lib = require('../../../main/lib/user')
 
 const sandbox = sinon.createSandbox(); 
 
@@ -24,7 +24,7 @@ describe('common - CALARCOde', () => {
     		it('returns NaN on bad int', async () => {
 			const result = CALARCOde_common.Purell("yo", 'i')
 
-			expect(result).to.equal(NaN)
+			expect(result).to.be.NaN
 		})
 	})
 	
@@ -35,6 +35,7 @@ describe('common - CALARCOde', () => {
 		
 		it('adds users', async () => {
             	// Arrange
+            	const User = require('../../../main/models/User')
             	CALARCOde_common.AddUser('egto222')
             	// Act
             	const result = await user_lib.is_whitelisted('egto222')
@@ -43,7 +44,7 @@ describe('common - CALARCOde', () => {
             	expect(result).to.true
         	})
 	})
-	
+
 	describe('Randoms', () => {
 		it('returns n random ints if n <= 10', async () => {
 			const result = CALARCOde_common.randoms(5)
@@ -88,5 +89,4 @@ describe('common - CALARCOde', () => {
             	expect(result).to.true
         	})
 	})
-
 })
