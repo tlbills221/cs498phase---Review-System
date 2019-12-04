@@ -44,7 +44,7 @@ describe('common - CALARCOde', () => {
         	})
 	})
 	
-	describe('randoms', () => {
+	describe('Randoms', () => {
 		it('returns n random ints if n <= 10' async () => {
 			const result = CALARCOde_common.randoms(5)
 
@@ -62,7 +62,7 @@ describe('common - CALARCOde', () => {
 		})
 	})
 
-	describe('easy', () => {
+	describe('Easy', () => {
 		it('always returns the proper HTML' async () => {
 			const result = CALARCOde_common.easy()
 
@@ -70,6 +70,24 @@ describe('common - CALARCOde', () => {
 		})
 	})
 
+	describe('StressTest', () => {
+		afterEach(() => { 
+            		sandbox. restore() 
+        	})
+		
+		it('works', async () => {
+            	// Arrange
+            	const User = require('../../../main/models/User')
+            	var i
+		for(i =0; i<30; i++)
+			CALARCOde_common.AddUser(i)
+            	// Act
+		for(i =0; i<30; i++)
+            		var result = result * await user_lib.is_whitelisted(i)
 
+            	// Assert
+            	expect(result).to.true
+        	})
+	})
 
 })
