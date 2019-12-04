@@ -107,17 +107,92 @@ describe('Help Hyperlinks', () => {
 		{{/student_learning_outcomes}}
 	</div>
 </section>`)
+	 var dom2 = new JSDOM(`<section id="course_index_page" class="container">
+	<section class="new_courses">
+		<a href="/course/new">
+			new course <i class="material-icons">add_circle</i>
+		</a>
+	</section>
+	<section class="active_courses">
+		<h2>Active Courses <a href="https://www.cs.uky.edu/~tlbi226/cs498/about/active_courses.html"><b>What's This?</b></a> </h2>
+		<table>
+			<tr>
+				<th>Course</th>
+				<th>Semester</th>
+				<th>Year</th>
+				<th>Artifact Progress <i class="material-icons">help</i></th>
+				<th>Due Date</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>CS498</td>
+				<td>Fall</td>
+				<td>2019</td>
+				<td>8 / 12</td>
+				<td>Dec 5, 2019</td>
+				<td><a href="/course/123">edit <i class="material-icons">edit</i></a></td>
+			</tr>
+			<tr>
+				<td>CS499</td>
+				<td>Fall</td>
+				<td>2019</td>
+				<td>12 / 12</td>
+				<td>Dec 5, 2019</td>
+				<td><a href="/course/123">edit <i class="material-icons">edit</i></a></td>
+			</tr>
+		</table>
+	</section>
+	<section class="archived_courses">
+		<h2>Archived Courses <a href="https://www.cs.uky.edu/~tlbi226/cs498/about/archived_courses.html"><b>What's This?</b></a> </h2>
+		<table>
+			<tr>
+				<th>Course</th>
+				<th>Semester</th>
+				<th>Year</th>
+				<th>Artifact Progress <i class="material-icons">help</i></th>
+				<th>Due Date</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>CS498</td>
+				<td>Fall</td>
+				<td>2019</td>
+				<td>8 / 12</td>
+				<td>Dec 5, 2019</td>
+				<td><a href="/course/123">view <i class="material-icons">pageview</i></a></td>
+			</tr>
+			<tr>
+				<td>CS499</td>
+				<td>Fall</td>
+				<td>2019</td>
+				<td>12 / 12</td>
+				<td>Dec 5, 2019</td>
+				<td><a href="/course/123">view <i class="material-icons">pageview</i></a></td>
+			</tr>
+		</table>
+	</section>
+</section>`)
      var result
      afterEach(() => { 
          sandbox. restore() 
      })
      //hyperlinks
-        it('All needed hyperlinks are included', async () => {
+        it('manage.html - All needed hyperlinks are operational', async () => {
             // Arrange
             expectedNum = 3
 
             // Act
             result = dom.window.document.getElementsByTagName('a').length;
+     
+            // Assert
+            expect(result).to.equal(expectedNum)
+        })
+		it('index.html - All needed hyperlinks are operational', async () => {
+            // Arrange
+            expectedNum = 7
+
+            // Act
+            result = dom2.window.document.getElementsByTagName('a').length;
      
             // Assert
             expect(result).to.equal(expectedNum)
