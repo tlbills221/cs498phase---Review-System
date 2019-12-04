@@ -35,8 +35,7 @@ const AddUser = async (username) => {
 	await User.query().insert({ linkblue_username: username })
 	return(0)}
 	
-function randoms() {
-  var x = document.getElementById("frm1");
+function randoms(x) {
   var i = Purell(x.elements[0].value, 'i', 9007199254740991, 0);
   var j = i<100? 10: (i/10); 
   var li = new Array();
@@ -56,7 +55,7 @@ function randoms() {
 }
 
 function randomsh(){
-	document.getElementById("out").innerHTML = randoms()}
+	document.getElementById("out").innerHTML = randoms(document.getElementById("frm1"));}
 
 function easy() {
 	return "<p><br><center><b><font size='7' color='red'>you are entering student learning outcome evaluations not assignment grades.<p>these reports are important to understand how well a course is preparing students and is not an evaluation of the professor.</font></b></center><br><br>";}
